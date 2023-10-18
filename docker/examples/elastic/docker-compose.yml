@@ -54,6 +54,8 @@ services:
     depends_on:
       - elastic_search
 
+    restart: on-failure
+
   elastic_search:
     build: ./ES
 
@@ -63,10 +65,10 @@ services:
       - 9300:9300
       - 9200:9200
     volumes:
-      - elastic_search_data:/usr/share/elasticsearch/data
+      - ./ES/data:/usr/share/elasticsearch/data
 
-volumes:
-  elastic_search_data: {}
+# volumes:
+#   elastic_search_data: {}
 
 #NOTE: Host requires changes in configuration to run ES
 #sudo sysctl -w vm.max_map_count=262144
