@@ -56,12 +56,33 @@ services:
 
     restart: on-failure
 
+  elastic_search:
+    build: ./ES
+
+    container_name: elastic
+    environment:
+       - "discovery.type=single-node"
+       - bootstrap.memory_lock=true
+       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+       - http.cors.enabled=true
+       - http.cors.allow-origin="*"
+       - http.cors.allow-methods="OPTIONS, HEAD, GET, POST, PUT, DELETE"
+       - http.cors.allow-headers="X-Requested-With,X-Auth-Token,Content-Type,Content-Length"
+       - http.cors.allow-credentials=true
+
+    ports:
+      - 9300:9300
+      - 9200:9200
+    volumes:
+      - ./ES/data:/usr/share/elasticsearch/data
+
+
   # elastic_search:
   #   build: ./ES
-
   #   container_name: elastic
   #   environment:
-  #      - "discovery.type=single-node"
+  #     - cluster.name=es_cluster
+  #     - node.max_local_storage_nodes=3
   #      - bootstrap.memory_lock=true
   #      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
   #      - http.cors.enabled=true
@@ -69,86 +90,65 @@ services:
   #      - http.cors.allow-methods="OPTIONS, HEAD, GET, POST, PUT, DELETE"
   #      - http.cors.allow-headers="X-Requested-With,X-Auth-Token,Content-Type,Content-Length"
   #      - http.cors.allow-credentials=true
-
-  #   ports:
-  #     - 9300:9300
-  #     - 9200:9200
+  #     - xpack.security.enabled=false
+  #   ulimits:
+  #     memlock:
+  #       soft: -1
+  #       hard: -1
   #   volumes:
   #     - ./ES/data:/usr/share/elasticsearch/data
+  #   ports:
+  #     - 9200:9200
+  #   # networks:
+  #   #   - elastic_network
 
+  # es_service_2:
+  #   build: ./ES
+  #   container_name: es_container_2
+  #   environment:
+  #     - cluster.name=es_cluster
+  #     - node.max_local_storage_nodes=3
+  #      - bootstrap.memory_lock=true
+  #      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+  #      - http.cors.enabled=true
+  #      - http.cors.allow-origin="*"
+  #      - http.cors.allow-methods="OPTIONS, HEAD, GET, POST, PUT, DELETE"
+  #      - http.cors.allow-headers="X-Requested-With,X-Auth-Token,Content-Type,Content-Length"
+  #      - http.cors.allow-credentials=true
+  #     - xpack.security.enabled=false
+  #     - discovery.zen.ping.unicast.hosts=elastic
+  #   ulimits:
+  #     memlock:
+  #       soft: -1
+  #       hard: -1
+  #   volumes:
+  #     - ./es_data_2:/usr/share/elasticsearch/data
+  #   # networks:
+  #   #   - elastic_network
 
-  es_service_1:
-    build: ./ES
-    container_name: elastic
-    environment:
-      - cluster.name=es_cluster
-      - node.max_local_storage_nodes=3
-       - bootstrap.memory_lock=true
-       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-       - http.cors.enabled=true
-       - http.cors.allow-origin="*"
-       - http.cors.allow-methods="OPTIONS, HEAD, GET, POST, PUT, DELETE"
-       - http.cors.allow-headers="X-Requested-With,X-Auth-Token,Content-Type,Content-Length"
-       - http.cors.allow-credentials=true
-      - xpack.security.enabled=false
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - ./ES/data:/usr/share/elasticsearch/data
-    ports:
-      - 9200:9200
-    networks:
-      - elastic_network
-
-  es_service_2:
-    build: ./ES
-    container_name: es_container_2
-    environment:
-      - cluster.name=es_cluster
-      - node.max_local_storage_nodes=3
-       - bootstrap.memory_lock=true
-       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-       - http.cors.enabled=true
-       - http.cors.allow-origin="*"
-       - http.cors.allow-methods="OPTIONS, HEAD, GET, POST, PUT, DELETE"
-       - http.cors.allow-headers="X-Requested-With,X-Auth-Token,Content-Type,Content-Length"
-       - http.cors.allow-credentials=true
-      - xpack.security.enabled=false
-      - discovery.zen.ping.unicast.hosts=elastic
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - ./es_data_2:/usr/share/elasticsearch/data
-    networks:
-      - elastic_network
-
-  es_service_3:
-    build: ./ES
-    container_name: es_container_3
-    environment:
-      - cluster.name=es_cluster
-      - node.max_local_storage_nodes=3
-       - bootstrap.memory_lock=true
-       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-       - http.cors.enabled=true
-       - http.cors.allow-origin="*"
-       - http.cors.allow-methods="OPTIONS, HEAD, GET, POST, PUT, DELETE"
-       - http.cors.allow-headers="X-Requested-With,X-Auth-Token,Content-Type,Content-Length"
-       - http.cors.allow-credentials=true
-      - xpack.security.enabled=false
-      - discovery.zen.ping.unicast.hosts=elastic
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - ./es_data_3:/usr/share/elasticsearch/data
-    networks:
-      - elastic_network
+  # es_service_3:
+  #   build: ./ES
+  #   container_name: es_container_3
+  #   environment:
+  #     - cluster.name=es_cluster
+  #     - node.max_local_storage_nodes=3
+  #      - bootstrap.memory_lock=true
+  #      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+  #      - http.cors.enabled=true
+  #      - http.cors.allow-origin="*"
+  #      - http.cors.allow-methods="OPTIONS, HEAD, GET, POST, PUT, DELETE"
+  #      - http.cors.allow-headers="X-Requested-With,X-Auth-Token,Content-Type,Content-Length"
+  #      - http.cors.allow-credentials=true
+  #     - xpack.security.enabled=false
+  #     - discovery.zen.ping.unicast.hosts=elastic
+  #   ulimits:
+  #     memlock:
+  #       soft: -1
+  #       hard: -1
+  #   volumes:
+  #     - ./es_data_3:/usr/share/elasticsearch/data
+  #   # networks:
+  #   #   - elastic_network
 
 
 
