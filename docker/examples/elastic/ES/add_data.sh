@@ -43,8 +43,14 @@ until $(curl -sSf -XGET --insecure 'http://localhost:9200/_cluster/health?wait_f
     sleep 10
 done
 echo "Elasticsearch seems to be working - Adding ArqMadeira_Troco_CAOP2022.geojson to ES"
-
 python3 /load_es_data.py /usr/share/elasticsearch/data/ArqMadeira_Troco_CAOP2022.geojson fid
+
+echo "Elasticsearch seems to be working - Adding ArqMadeira_NUTSI_CAOP2022.geojson to ES"
+python3 /load_es_data.py /usr/share/elasticsearch/data/ArqMadeira_NUTSI_CAOP2022.geojson fid
+
+echo "Elasticsearch seems to be working - Adding EF_AguasBalneares.geojson to ES"
+python3 /load_es_data.py /usr/share/elasticsearch/data/EF_AguasBalneares.geojson id
+
 
 echo "Seems that data was loaded"
 
