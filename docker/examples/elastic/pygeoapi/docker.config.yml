@@ -87,9 +87,9 @@ metadata:
 
 resources:
 
-    arqmadeira_caop2022:
+    arqmadeira_nutsi_caop2022:
         type: collection
-        title: Carta Administrativa Oficial de Portugal - CAOP2022 (RAM)
+        title: Carta Administrativa Oficial de Portugal - CAOP2022 (RAM) NUTSI
         description: 'A CAOP regista o estado de delimitação e demarcação das circunscrições administrativas do País, ou seja, os limites oficiais de distrito, concelho e freguesia (estes limites têm igualmente correspondência com as NUTS I, NUTS II e NUTS III, de acordo com a Lei n.º 75/2013 de 12 de setembro). A sua elaboração e conservação é uma das atribuições da Direção-Geral do Território, nos termos do disposto na alínea l) do nº 2 do artigo 2º do Decreto Regulamentar nº 30/2012 de 13 de março, sendo que a atribuição do código unívoco de cada freguesia (DICOFRE) é da responsabilidade do Instituto Nacional de Estatística. A Assembleia da República é o organismo com competências reconhecidas por lei para alterar e fixar limites administrativos. A CAOP 2022 resultou das alterações de limites administrativos de freguesias/concelhos, bem como alterações de denominações de freguesias, decorrentes da publicação de vários diplomas, publicados entre a data de publicação da CAOP2021 e dezembro de 2022. Para a utilização de serviços de visualização e descarregamento consultar os Guias de Apoio na página de dados abertos da DGT (https://www.dgterritorio.gov.pt/dados-abertos). Para mais informações sobre esta versão da CAOP e sobre as versões anteriores, nomeadamente informação mais detalhada sobre NUTS, distritos, municípios ou freguesias, consultar o seguinte endereço: https://www.dgterritorio.gov.pt/cartografia/cartografia-tematica/caop'
         keywords:
             - limites administrativos
@@ -130,91 +130,92 @@ resources:
                     name: pbf
                     mimetype: application/vnd.mapbox-vector-tile
 
-    # arqmadeira_nutsi_caop2022:
-    #     type: collection
-    #     title: Carta Administrativa Oficial de Portugal - CAOP2022 (RAM) NUTSI
-    #     description: 'A CAOP regista o estado de delimitação e demarcação das circunscrições administrativas do País, ou seja, os limites oficiais de distrito, concelho e freguesia (estes limites têm igualmente correspondência com as NUTS I, NUTS II e NUTS III, de acordo com a Lei n.º 75/2013 de 12 de setembro). A sua elaboração e conservação é uma das atribuições da Direção-Geral do Território, nos termos do disposto na alínea l) do nº 2 do artigo 2º do Decreto Regulamentar nº 30/2012 de 13 de março, sendo que a atribuição do código unívoco de cada freguesia (DICOFRE) é da responsabilidade do Instituto Nacional de Estatística. A Assembleia da República é o organismo com competências reconhecidas por lei para alterar e fixar limites administrativos. A CAOP 2022 resultou das alterações de limites administrativos de freguesias/concelhos, bem como alterações de denominações de freguesias, decorrentes da publicação de vários diplomas, publicados entre a data de publicação da CAOP2021 e dezembro de 2022. Para a utilização de serviços de visualização e descarregamento consultar os Guias de Apoio na página de dados abertos da DGT (https://www.dgterritorio.gov.pt/dados-abertos). Para mais informações sobre esta versão da CAOP e sobre as versões anteriores, nomeadamente informação mais detalhada sobre NUTS, distritos, municípios ou freguesias, consultar o seguinte endereço: https://www.dgterritorio.gov.pt/cartografia/cartografia-tematica/caop'
-    #     keywords:
-    #         - limites administrativos
-    #         - Madeira
-    #     links:
-    #         - type: text/html
-    #           rel: canonical
-    #           title: information
-    #           href: https://snig.dgterritorio.gov.pt/rndg/srv/por/catalog.search#/metadata/78aef3be-0232-43ad-9dd5-fcdce15da03f
-    #           hreflang: en-US
-    #         - type: application/gzip
-    #           rel: canonical
-    #           title: download
-    #           href: https://snig.dgterritorio.gov.pt/rndg/srv/por/catalog.search#/metadata/78aef3be-0232-43ad-9dd5-fcdce15da03f
-    #           hreflang: en-US
-    #     extents:
-    #         spatial:
-    #             bbox: [-17.2659376188199865,32.4036870753100388,-16.4628077088089135,32.8706293261647460]
-    #             crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
-    #     providers:
-    #         - type: feature
-    #           name: Elasticsearch
-    #           #Note elastic_search is the docker container of ES the name is defined in the docker-compose.yml
-    #           data: http://elastic_search:9200/arqmadeira_nutsi_caop2022
-    #           id_field: fid
-    #         - type: tile
-    #           name: MVT
-    #           data: http://elastic_search:9200/arqmadeira_nutsi_caop2022/_mvt/geometry/{z}/{x}/{y}?grid_precision=0
-    #           # index must have a geo_point
-    #           options:
-    #             metadata_format: none # default | tilejson
-    #             zoom:
-    #                 min: 0
-    #                 max: 16
-    #             schemes:
-    #                 - WorldCRS84Quad
-    #           format:
-    #                 name: pbf
-    #                 mimetype: application/vnd.mapbox-vector-tile
+    arqmadeira_troco_caop2022:
+        type: collection
+        title: Carta Administrativa Oficial de Portugal - CAOP2022 (RAM) TROCO
+        description: 'A CAOP regista o estado de delimitação e demarcação das circunscrições administrativas do País, ou seja, os limites oficiais de distrito, concelho e freguesia (estes limites têm igualmente correspondência com as NUTS I, NUTS II e NUTS III, de acordo com a Lei n.º 75/2013 de 12 de setembro). A sua elaboração e conservação é uma das atribuições da Direção-Geral do Território, nos termos do disposto na alínea l) do nº 2 do artigo 2º do Decreto Regulamentar nº 30/2012 de 13 de março, sendo que a atribuição do código unívoco de cada freguesia (DICOFRE) é da responsabilidade do Instituto Nacional de Estatística. A Assembleia da República é o organismo com competências reconhecidas por lei para alterar e fixar limites administrativos. A CAOP 2022 resultou das alterações de limites administrativos de freguesias/concelhos, bem como alterações de denominações de freguesias, decorrentes da publicação de vários diplomas, publicados entre a data de publicação da CAOP2021 e dezembro de 2022. Para a utilização de serviços de visualização e descarregamento consultar os Guias de Apoio na página de dados abertos da DGT (https://www.dgterritorio.gov.pt/dados-abertos). Para mais informações sobre esta versão da CAOP e sobre as versões anteriores, nomeadamente informação mais detalhada sobre NUTS, distritos, municípios ou freguesias, consultar o seguinte endereço: https://www.dgterritorio.gov.pt/cartografia/cartografia-tematica/caop'
+        keywords:
+            - Limites administrativos
+            - Madeira
+        links:
+            - type: text/html
+              rel: canonical
+              title: information
+              href: https://snig.dgterritorio.gov.pt/rndg/srv/por/catalog.search#/metadata/78aef3be-0232-43ad-9dd5-fcdce15da03f
+              hreflang: en-US
+            - type: application/gzip
+              rel: canonical
+              title: download
+              href: https://snig.dgterritorio.gov.pt/rndg/srv/por/catalog.search#/metadata/78aef3be-0232-43ad-9dd5-fcdce15da03f
+              hreflang: en-US
+        extents:
+            spatial:
+                bbox: [-17.2659376188199865,32.4036870753100388,-16.4628077088089135,32.8706293261647460]
+                crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+        providers:
+            - type: feature
+              name: Elasticsearch
+              #Note elastic_search is the docker container of ES the name is defined in the docker-compose.yml
+              data: http://elastic_search:9200/arqmadeira_troco_caop2022
+              id_field: fid
+            - type: tile
+              name: MVT
+              data: http://elastic_search:9200/arqmadeira_troco_caop2022/_mvt/geometry/{z}/{x}/{y}?grid_precision=0
+              # index must have a geo_point
+              options:
+                metadata_format: none # default | tilejson
+                zoom:
+                    min: 0
+                    max: 16
+                schemes:
+                    - WorldCRS84Quad
+              format:
+                    name: pbf
+                    mimetype: application/vnd.mapbox-vector-tile
 
-    # arqmadeira_troco_caop2022:
-    #     type: collection
-    #     title: Carta Administrativa Oficial de Portugal - CAOP2022 (RAM) TROCO
-    #     description: 'A CAOP regista o estado de delimitação e demarcação das circunscrições administrativas do País, ou seja, os limites oficiais de distrito, concelho e freguesia (estes limites têm igualmente correspondência com as NUTS I, NUTS II e NUTS III, de acordo com a Lei n.º 75/2013 de 12 de setembro). A sua elaboração e conservação é uma das atribuições da Direção-Geral do Território, nos termos do disposto na alínea l) do nº 2 do artigo 2º do Decreto Regulamentar nº 30/2012 de 13 de março, sendo que a atribuição do código unívoco de cada freguesia (DICOFRE) é da responsabilidade do Instituto Nacional de Estatística. A Assembleia da República é o organismo com competências reconhecidas por lei para alterar e fixar limites administrativos. A CAOP 2022 resultou das alterações de limites administrativos de freguesias/concelhos, bem como alterações de denominações de freguesias, decorrentes da publicação de vários diplomas, publicados entre a data de publicação da CAOP2021 e dezembro de 2022. Para a utilização de serviços de visualização e descarregamento consultar os Guias de Apoio na página de dados abertos da DGT (https://www.dgterritorio.gov.pt/dados-abertos). Para mais informações sobre esta versão da CAOP e sobre as versões anteriores, nomeadamente informação mais detalhada sobre NUTS, distritos, municípios ou freguesias, consultar o seguinte endereço: https://www.dgterritorio.gov.pt/cartografia/cartografia-tematica/caop'
-    #     keywords:
-    #         - limites administrativos
-    #         - Madeira
-    #     links:
-    #         - type: text/html
-    #           rel: canonical
-    #           title: information
-    #           href: https://snig.dgterritorio.gov.pt/rndg/srv/por/catalog.search#/metadata/78aef3be-0232-43ad-9dd5-fcdce15da03f
-    #           hreflang: en-US
-    #         - type: application/gzip
-    #           rel: canonical
-    #           title: download
-    #           href: https://snig.dgterritorio.gov.pt/rndg/srv/por/catalog.search#/metadata/78aef3be-0232-43ad-9dd5-fcdce15da03f
-    #           hreflang: en-US
-    #     extents:
-    #         spatial:
-    #             bbox: [-17.2659376188199865,32.4036870753100388,-16.4628077088089135,32.8706293261647460]
-    #             crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
-    #     providers:
-    #         - type: feature
-    #           name: Elasticsearch
-    #           #Note elastic_search is the docker container of ES the name is defined in the docker-compose.yml
-    #           data: http://elastic_search:9200/arqmadeira_troco_caop2022
-    #           id_field: fid
-    #         - type: tile
-    #           name: MVT
-    #           data: http://elastic_search:9200/arqmadeira_troco_caop2022/_mvt/geometry/{z}/{x}/{y}?grid_precision=0
-    #           # index must have a geo_point
-    #           options:
-    #             metadata_format: none # default | tilejson
-    #             zoom:
-    #                 min: 0
-    #                 max: 16
-    #             schemes:
-    #                 - WorldCRS84Quad
-    #           format:
-    #                 name: pbf
-    #                 mimetype: application/vnd.mapbox-vector-tile
+    green open ef_aguasbalneares:
+        type: collection
+        title: Pontos de Monitorização das Águas Balneares Identificadas na Região Autónoma da Madeira
+        description: 'Este Conjunto de Dados Geográficos representa a localização onde são recolhidas as amostras de água para monitorização das Águas Balneares Identificadas na Região Autónoma da Madeira. As águas balneares são identificadas anualmente pela Direcção Regional do Ordenamento do Território e Ambiente - DROTA, nos termos do Decreto-Lei n.º 135/2009, de 3 de Junho, alterado e republicado pelo Decreto-Lei 113/2012, de 23 de Maio, que estabelece o regime jurídico de identificação, gestão, monitorização e classificação da qualidade das águas balneares e de prestação de informação ao público sobre as mesmas (Diretiva n.º 2006/7/CE do Parlamento Europeu e do Conselho de 15 de Fevereiro) O procedimento de identificação anual das águas balneares, inicia-se com a elaboração de uma proposta de identificação de águas balneares, em colaboração com as autarquias locais. A proposta é submetida a consulta pública entre 2 de Janeiro e 2 de Fevereiro. Findo este período a identificação é aprovada por portaria do membro do governo responsável pela área do ambiente, até 1 de Março de cada ano.'
+        keywords:
+            - Saúde
+            - Ambiente
+            - Madeira
+        links:
+            - type: text/html
+              rel: canonical
+              title: information
+              href: https://snig.dgterritorio.gov.pt/rndg/srv/por/catalog.search#/metadata/78aef3be-0232-43ad-9dd5-fcdce15da03f
+              hreflang: en-US
+            - type: application/gzip
+              rel: canonical
+              title: download
+              href: https://snig.dgterritorio.gov.pt/rndg/srv/por/catalog.search#/metadata/6b28a0d7-2358-43fb-8559-ef3ed769a84b
+              hreflang: en-US
+        extents:
+            spatial:
+                bbox: [-17.2659376188199865,32.4036870753100388,-16.4628077088089135,32.8706293261647460]
+                crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+        providers:
+            - type: feature
+              name: Elasticsearch
+              #Note elastic_search is the docker container of ES the name is defined in the docker-compose.yml
+              data: http://elastic_search:9200/green open ef_aguasbalneares
+              id_field: fid
+            - type: tile
+              name: MVT
+              data: http://elastic_search:9200/green open ef_aguasbalneares/_mvt/geometry/{z}/{x}/{y}?grid_precision=0
+              # index must have a geo_point
+              options:
+                metadata_format: none # default | tilejson
+                zoom:
+                    min: 0
+                    max: 16
+                schemes:
+                    - WorldCRS84Quad
+              format:
+                    name: pbf
+                    mimetype: application/vnd.mapbox-vector-tile
 
     hello-world:
         type: process
