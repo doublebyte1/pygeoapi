@@ -173,7 +173,7 @@ resources:
                     name: pbf
                     mimetype: application/vnd.mapbox-vector-tile
 
-    green open ef_aguasbalneares:
+    ef_aguasbalneares:
         type: collection
         title: Pontos de Monitorização das Águas Balneares Identificadas na Região Autónoma da Madeira
         description: 'Este Conjunto de Dados Geográficos representa a localização onde são recolhidas as amostras de água para monitorização das Águas Balneares Identificadas na Região Autónoma da Madeira. As águas balneares são identificadas anualmente pela Direcção Regional do Ordenamento do Território e Ambiente - DROTA, nos termos do Decreto-Lei n.º 135/2009, de 3 de Junho, alterado e republicado pelo Decreto-Lei 113/2012, de 23 de Maio, que estabelece o regime jurídico de identificação, gestão, monitorização e classificação da qualidade das águas balneares e de prestação de informação ao público sobre as mesmas (Diretiva n.º 2006/7/CE do Parlamento Europeu e do Conselho de 15 de Fevereiro) O procedimento de identificação anual das águas balneares, inicia-se com a elaboração de uma proposta de identificação de águas balneares, em colaboração com as autarquias locais. A proposta é submetida a consulta pública entre 2 de Janeiro e 2 de Fevereiro. Findo este período a identificação é aprovada por portaria do membro do governo responsável pela área do ambiente, até 1 de Março de cada ano.'
@@ -185,7 +185,7 @@ resources:
             - type: text/html
               rel: canonical
               title: information
-              href: https://snig.dgterritorio.gov.pt/rndg/srv/por/catalog.search#/metadata/78aef3be-0232-43ad-9dd5-fcdce15da03f
+              href: https://snig.dgterritorio.gov.pt/rndg/srv/por/catalog.search#/metadata/6b28a0d7-2358-43fb-8559-ef3ed769a84b
               hreflang: en-US
             - type: application/gzip
               rel: canonical
@@ -200,11 +200,11 @@ resources:
             - type: feature
               name: Elasticsearch
               #Note elastic_search is the docker container of ES the name is defined in the docker-compose.yml
-              data: http://elastic_search:9200/green open ef_aguasbalneares
+              data: http://elastic_search:9200/ef_aguasbalneares
               id_field: fid
             - type: tile
               name: MVT
-              data: http://elastic_search:9200/green open ef_aguasbalneares/_mvt/geometry/{z}/{x}/{y}?grid_precision=0
+              data: http://elastic_search:9200/ef_aguasbalneares/_mvt/geometry/{z}/{x}/{y}?grid_precision=0
               # index must have a geo_point
               options:
                 metadata_format: none # default | tilejson
