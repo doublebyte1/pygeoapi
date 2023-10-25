@@ -54,19 +54,27 @@ services:
     depends_on:
       - elastic_search
 
+    restart: on-failure
+
   elastic_search:
     build: ./ES
 
     container_name: elastic
+    environment:
+       - "discovery.type=single-node"
+       - bootstrap.memory_lock=true
+       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+       - http.cors.enabled=true
+       - http.cors.allow-origin="*"
+       - http.cors.allow-methods="OPTIONS, HEAD, GET, POST, PUT, DELETE"
+       - http.cors.allow-headers="X-Requested-With,X-Auth-Token,Content-Type,Content-Length"
+       - http.cors.allow-credentials=true
 
     ports:
       - 9300:9300
       - 9200:9200
     volumes:
-      - elastic_search_data:/usr/share/elasticsearch/data
-
-volumes:
-  elastic_search_data: {}
+      - ./ES/data:/usr/share/elasticsearch/data
 
 #NOTE: Host requires changes in configuration to run ES
 #sudo sysctl -w vm.max_map_count=262144

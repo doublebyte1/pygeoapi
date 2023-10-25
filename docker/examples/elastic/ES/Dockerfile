@@ -45,7 +45,7 @@ RUN apt update && apt install -y wget
 
 RUN wget https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh -O bin/wait-for-it.sh
 RUN chmod +x bin/wait-for-it.sh
-RUN wget https://raw.githubusercontent.com/geopython/pygeoapi/master/tests/data/ne_110m_populated_places_simple.geojson -O ${DATA_FOLDER}/ne_110m_populated_places_simple.geojson
+RUN wget https://raw.githubusercontent.com/geopython/pygeoapi/master/tests/data/ne_110m_populated_places_simple.geojson -O /ne_110m_populated_places_simple.geojson
 RUN wget https://raw.githubusercontent.com/geopython/pygeoapi/master/tests/load_es_data.py -O /load_es_data.py
 
 RUN echo "xpack.security.enabled: false" >> config/elasticsearch.yml

@@ -125,3 +125,13 @@ pygeoapi/db.sqlite3
 
 # Pycharm project files
 .idea
+
+./docker/examples/elastic/ES/data/snapshot_cache
+./docker/examples/elastic/ES/data/nodes
+./docker/examples/elastic/ES/data/node.lock
+./docker/examples/elastic/ES/data/indices
+./docker/examples/elastic/ES/data/state
+
+./docker/examples/elastic/ES/data/pop_residente_2011_1k.geojson
+./docker/examples/elastic/ES/data/roads_korea.geojson
+
