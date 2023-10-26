@@ -162,7 +162,7 @@ resources:
               id_field: osm_id
             - type: tile
               name: MVT
-              data: http://elastic_search:9200/roads_korea/_mvt/geometry/{z}/{x}/{y}?grid_precision=0
+              data: http://elastic_search:9200/roads_korea/_mvt/geometry/{z}/{x}/{y}?grid_precision=0&size=1000000000
               # index must have a geo_point
               options:
                 metadata_format: none # default | tilejson
