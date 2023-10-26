@@ -292,7 +292,7 @@ resources:
               id_field: objectid
             - type: tile
               name: MVT
-              data: http://elastic_search:9200/pop_residente_2011_1k/_mvt/geometry/{z}/{x}/{y}?grid_precision=0
+              data: http://elastic_search:9200/pop_residente_2011_1k/_mvt/geometry/{z}/{x}/{y}?grid_precision=0&size=1000000000
               # index must have a geo_point
               options:
                 metadata_format: none # default | tilejson
