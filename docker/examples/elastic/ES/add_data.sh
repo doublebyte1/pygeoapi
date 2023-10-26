@@ -58,6 +58,8 @@ python3 /load_es_data.py /ne_110m_populated_places_simple.geojson geonameid
 echo "Elasticsearch seems to be working - Adding pop_residente_2011_1k.geojson to ES"
 python3 /load_es_data.py /usr/share/elasticsearch/data/pop_residente_2011_1k.geojson objectid
 
+echo "increasing index.max_result_window"
+ curl -XPUT -H 'Content-Type: application/json' -d '{"index": {"max_result_window": 1000000000 }}' 'http://127.0.0.1:9200/pop_residente_2011_1k/_settings'
 echo "Seems that data was loaded"
 
 # create a new index with the settings in es_index_config.json
