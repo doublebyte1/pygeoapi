@@ -69,6 +69,21 @@ pygeoapi openapi generate ${PYGEOAPI_CONFIG} --output-file ${PYGEOAPI_OPENAPI}
 
 echo "openapi.yml generated continue to pygeoapi"
 
+apt-get update
+apt-get install wget -y && \
+wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/local/bin/yq &&\
+    chmod +x /usr/local/bin/yq
+
+echo "Evaluating gunicorn port from configuration"
+
+PORT="$(yq eval '.server.bind.port' ${PYGEOAPI_CONFIG})"
+
+if [ -n "$PORT" ]; then
+  CONTAINER_PORT=$PORT
+fi
+
+echo "Guincorn port set to ${CONTAINER_PORT}"
+
 start_gunicorn() {
 	# SCRIPT_NAME should not have value '/'
 	[[ "${SCRIPT_NAME}" = '/' ]] && export SCRIPT_NAME="" && echo "make SCRIPT_NAME empty from /"
