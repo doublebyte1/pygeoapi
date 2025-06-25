@@ -69,6 +69,11 @@ pygeoapi openapi generate ${PYGEOAPI_CONFIG} --output-file ${PYGEOAPI_OPENAPI}
 
 echo "openapi.yml generated continue to pygeoapi"
 
+if [ -n "$GPORT" ]; then
+	CONTAINER_PORT=$GPORT
+	echo "Guincorn port set to ${CONTAINER_PORT}"
+fi
+
 start_gunicorn() {
 	# SCRIPT_NAME should not have value '/'
 	[[ "${SCRIPT_NAME}" = '/' ]] && export SCRIPT_NAME="" && echo "make SCRIPT_NAME empty from /"
