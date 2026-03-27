@@ -46,6 +46,8 @@ CRS_CODES = {
     'http://www.opengis.net/def/crs/EPSG/0/3857': 'EPSG:3857'
 }
 
+DEFAULT_CRS = 'EPSG:4326'
+
 
 class WMSFacadeProvider(BaseProvider):
     """WMS 1.3.0 provider"""
@@ -64,8 +66,8 @@ class WMSFacadeProvider(BaseProvider):
         LOGGER.debug(f'pyproj version: {pyproj.__version__}')
 
     def query(self, style=None, bbox=[-180, -90, 180, 90], width=500,
-              height=300, crs=4326, datetime_=None, transparent=True,
-              bbox_crs=4326, format_='png', **kwargs):
+              height=300, crs=DEFAULT_CRS, datetime_=None, transparent=True,
+              bbox_crs=DEFAULT_CRS, format_='png', **kwargs):
         """
         Generate map
 
