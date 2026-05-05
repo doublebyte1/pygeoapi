@@ -108,6 +108,7 @@ jobs:
         version: 4.3.0a-6build1
     - name: Use ubuntuGIS unstable ppa
       run: |
+        sudo apt update
         sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
         sudo apt update
         sudo apt-get install gdal-bin libgdal-dev -y
