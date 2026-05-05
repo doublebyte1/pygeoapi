@@ -128,6 +128,8 @@ jobs:
         sudo apt-get install -y \
           build-essential \
           cmake \
+          autoconf \
+          automake \
           libsqlite3-dev \
           libgeos-dev \
           libproj-dev \
@@ -150,7 +152,7 @@ jobs:
         ./configure --prefix=/usr/local
         make -j$(nproc)
         sudo make install
-        sudo ldconfig  # Update library cache
+        sudo ldconfig
         cd ..
     - name: Install requirements 📦
       run: |
