@@ -106,6 +106,12 @@ jobs:
       with:
         packages: libsqlite3-mod-spatialite
         version: 4.3.0a-6build1
+    - name: Debug PPA Connectivity
+      run: |
+        ping -c 4 ppa.launchpad.net
+        curl -v https://ppa.launchpad.net/ubuntugis/ubuntugis-unstable/ubuntu/dists/noble/InRelease
+        nslookup ppa.launchpad.net
+      shell: bash
     - name: Use ubuntuGIS unstable ppa
       run: |
         sudo apt-get update
