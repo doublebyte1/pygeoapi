@@ -140,7 +140,10 @@ jobs:
         pip3 install -r requirements-django.txt
         pip3 install -r requirements-pubsub.txt
         pip3 install .
-        pip3 install GDAL==`gdal-config --version`
+        sudo apt-get update
+        sudo apt-get install -y gdal-bin libgdal-dev
+        export GDAL_VERSION=$(gdal-config --version)
+        pip3 install GDAL==$GDAL_VERSION
     - name: setup test data ⚙️
       run: |
         python3 tests/load_oracle_data.py
