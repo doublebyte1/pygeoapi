@@ -122,6 +122,21 @@ jobs:
 #      with:
 #        packages: gdal-bin libgdal-dev
 #        version: 3.11.3
+    - name: Install GDAL 3.11.3 from source
+      run: |
+        # Install build dependencies
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake libsqlite3-dev libgeos-dev libproj-dev zlib1g-dev
+
+        # Download and compile GDAL 3.11.3
+        wget https://github.com/OSGeo/gdal/releases/download/v3.11.3/gdal-3.11.3.tar.gz
+        tar -xzf gdal-3.11.3.tar.gz
+        cd gdal-3.11.3
+        ./configure --prefix=/usr/local
+        make -j$(nproc)
+        sudo make install
+        sudo ldconfig  # Update library cache
+        cd ..
     - name: Install requirements 📦
       run: |
         pip3 install setuptools
@@ -134,10 +149,6 @@ jobs:
         pip3 install -r requirements-django.txt
         pip3 install -r requirements-pubsub.txt
         pip3 install .
-        sudo apt-get update
-        sudo apt-get install -y gdal-bin libgdal-dev
-        export GDAL_VERSION=$(gdal-config --version)
-        pip3 install --only-binary=:all: GDAL==$GDAL_VERSION
       shell: bash
     - name: setup test data ⚙️
       run: |
