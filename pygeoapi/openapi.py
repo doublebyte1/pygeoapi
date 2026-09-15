@@ -669,8 +669,8 @@ def get_oas_30_parameters(cfg: dict, locale_: str):
             'style': 'form',
             'explode': False,
             'schema': {
-                'type': 'integer',
-                'default': 4326
+                'type': 'string',
+                'default': 'OGC:CRS84'
             }
         },
         'offset': {
