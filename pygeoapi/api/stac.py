@@ -337,7 +337,7 @@ def search(api: API, request: Union[APIRequest, Any]) -> Tuple[dict, int, str]:
     if request.data:
         LOGGER.debug('Intercepting STAC POST request into query args')
         request_data = json.loads(request.data)
-        request_params = deepcopy(dict(request.params))
+        request_params = deepcopy(dict(request.params.items()))
 
         for qp in ['bbox', 'datetime', 'limit', 'offset']:
             if qp in request_data:
@@ -398,7 +398,7 @@ def search(api: API, request: Union[APIRequest, Any]) -> Tuple[dict, int, str]:
 
     next_link = False
     prev_link = False
-    request_params = deepcopy(dict(request._args))
+    request_params = deepcopy(dict(request.params.items()))
     limit = itemtypes_api.evaluate_limit(
         request_params.get('limit'),
         api.config['server'].get('limits', {}), {})
