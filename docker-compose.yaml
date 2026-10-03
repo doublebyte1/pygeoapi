@@ -6,4 +6,5 @@ services:
     volumes:
       - ./cern-config.yml:/pygeoapi/local.config.yml
     ports:
-      - "80:5001"
+      - "8080:8080"
+    name: pygeoapi-ga
