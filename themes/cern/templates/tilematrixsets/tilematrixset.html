@@ -1,0 +1,49 @@
+{% extends "_base.html" %}
+{% block title %}{{ super() }} {% trans %}TileMatrixSet{% endtrans %} {{ data['id'] }}{% endblock %}
+{% block crumbs %}{{ super() }}
+/ <a href="../TileMatrixSets/">{% trans %}TileMatrixSets{% endtrans %}</a>
+/ <a href="../TileMatrixSets/{{ data['id'] }}?f=html">{{ data['id'] }}</a>
+{% endblock %}
+{% block body %}
+<h2>{{ data['id'] }} {% trans %}tile matrix set{% endtrans %}</h2>
+<dl>
+<dt>{% trans %}Identifier{% endtrans %}</dt>
+<dd><code>{{ data['id'] }}</code></dd>
+<dt>{% trans %}Coordinate reference system{% endtrans %}</dt>
+<dd><i>{{ data['crs'] }}</i></dd>
+{% if data.get('orderedAxes') %}
+<dt>{% trans %}Ordered axes{% endtrans %}</dt>
+<dd>{{ data['orderedAxes'] | join(', ') }}</dd>
+{% endif %}
+<dt>{% trans %}URI{% endtrans %}</dt>
+<dd><i>{{ data['uri'] }}</i></dd>
+{% if data.get('wellKnownScaleSet') %}
+<dt>{% trans %}Well known scale set{% endtrans %}</dt>
+<dd><i>{{ data['wellKnownScaleSet'] }}</i></dd>
+{% endif %}
+</dl>
+<hr>
+<h2>{% trans %}Tile matrices{% endtrans %} ({{ data['tileMatrices'] | length }})</h2>
+<table border="1">
+<thead>
+<tr>
+<th align="left">{% trans %}Tile matrix{% endtrans %}</th>
+<th align="right">{% trans %}Scale denominator{% endtrans %}</th>
+<th align="right">{% trans %}Cell size{% endtrans %}</th>
+<th align="right">{% trans %}Tile size{% endtrans %}</th>
+<th align="right">{% trans %}Matrix size{% endtrans %}</th>
+</tr>
+</thead>
+<tbody>
+{% for m in data['tileMatrices'] %}
+<tr>
+<td align="left">{{ m.id }}</td>
+<td align="right">{{ m.scaleDenominator | int }}</td>
+<td align="right">{{ '%.6f' | format(m.cellSize | round(6)) }}</td>
+<td align="right">{{ m.tileWidth }} &times; {{ m.tileHeight }}</td>
+<td align="right">{{ m.matrixWidth }} &times; {{ m.matrixHeight }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

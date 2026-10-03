@@ -1,0 +1,23 @@
+{% extends "_base.html" %}
+{% block title %}{{ super() }} {% trans %}TileMatrixSets{% endtrans %}{% endblock %}
+{% block crumbs %}{{ super() }}
+/ <a href="./TileMatrixSets">{% trans %}TileMatrixSets{% endtrans %}</a>
+{% endblock %}
+{% block body %}
+<h2>{% trans %}Tile matrix sets available in this service{% endtrans %}</h2>
+<dl>
+{% for p in data['tileMatrixSets'] %}
+{% set n = namespace(html='', json='') %}
+{% for l in p.links %}
+{% if l.rel == 'self' and l.type == 'text/html' %}
+{% set n.html = l.href %}
+{% elif l.rel == 'self' and l.type == 'application/json' %}
+{% set n.json = l.href %}
+{% endif %}
+{% endfor %}
+<dt>{% if n.html %}<a href="{{ n.html }}">{{ p.id }}</a>{% else %}{{ p.id }}{% endif %}</dt>
+<dd>{{ p.title }}
+{% if n.json %}(<a href="{{ n.json }}">{% trans %}json{% endtrans %}</a>){% endif %}</dd>
+{% endfor %}
+</dl>
+{% endblock %}

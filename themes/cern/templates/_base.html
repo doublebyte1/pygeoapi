@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="{{ (locale|lower)[:2] }}">
+<head>
+<meta charset="{{ config['server'].get('encoding', 'utf-8') }}">
+<title>{% block title %}{% endblock %}{% if not self.title() %}{{ config['metadata']['identification']['title'] }}{% endif %}</title>
+<meta name="language" content="{{ config['server'].get('language', locale) }}">
+<meta name="description" content="{{ config['metadata']['identification']['description'] }}">
+<meta name="keywords" content="{{ config['metadata']['identification']['keywords']|join(',') }}">
+<link rel="stylesheet" href="{{ config['server']['url'] }}/static/css/cern.css">
+{% for link in data.get('links', []) %}
+  {% if (link['rel']=="self" and link['type']=="text/html") %}
+  <link rel="canonical" href="{{ link['href'].split('?')[0] }}?f=html" />
+  {% elif (link['rel']!="canonical" and link['rel'] not in ["self", "alternate"]) %}
+  <link rel="{{ link['rel'] }}" type="{{ link['type'] }}" title="{{ link['title'] }}" href="{{ link['href'] }}"/>
+  {% endif %}
+{% endfor %}
+{% block extrahead %}
+{% endblock %}
+</head>
+<body>
+<h1>{{ config['metadata']['identification']['title'] }}</h1>
+<p><em>{{ config['metadata']['identification']['description'] }}</em></p>
+<hr>
+<p>
+{% block crumbs %}
+<a href="{{ config['server']['url'] }}">{% trans %}Home{% endtrans %}</a>
+{% endblock %}
+<span>
+{% set links_found = namespace(json='', jsonld='') %}
+{% for link in data.get('links', []) %}
+{% if link['rel'] == 'alternate' and link.get('type') and link['type'] in ['application/json', 'application/geo+json', 'application/prs.coverage+json'] %}
+{% set links_found.json = link.href | string | safe %}
+/ <a href="{{ link['href'] }}">{% trans %}json{% endtrans %}</a>
+{% elif link['rel'] == 'alternate' and link.get('type') and link['type'] == 'application/ld+json' %}
+{% set links_found.jsonld = link.href | string | safe %}
+/ <a href="{{ link['href'] }}">{% trans %}jsonld{% endtrans %}</a>
+{% endif %}
+{% endfor %}
+{% if links_found.json == '' %}
+/ <a href="?f=json">{% trans %}json{% endtrans %}</a>
+{% endif %}
+{% if links_found.jsonld == '' %}
+/ <a href="?f=jsonld">{% trans %}jsonld{% endtrans %}</a>
+{% endif %}
+</span>
+</p>
+<hr>
+{% block body %}
+{% endblock %}
+<hr>
+<address>
+<a href="mailto:{{ config['metadata']['contact']['email'] }}">{{ config['metadata']['contact']['name'] }}</a>
+, {{ config['metadata']['contact']['position'] }}
+, {{ config['metadata']['provider']['name'] }}
+</address>
+<p><em>
+{% trans %}Powered by{% endtrans %}
+<a href="https://pygeoapi.io">pygeoapi</a>
+{{ version }}.
+</em></p>
+{% block extrafoot %}
+{% endblock %}
+<pre>[End]</pre>
+</body>
+</html>

@@ -1,0 +1,36 @@
+/*
+  pygeoapi "CERN" theme -- the look of the first web pages
+  (after https://info.cern.ch/hypertext/WWW/TheProject.html).
+
+  The browser's own defaults (Times serif, blue underlined links)
+  provide almost all of the styling; this file only restores the
+  classic defaults a 1993 browser would have had.
+*/
+
+body {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 16px;
+    background: #ffffff;
+    color: #000000;
+    /* classic web pages were ~80 characters wide */
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+a {
+    color: #0000ee; /* unvisited link */
+}
+
+a:visited {
+    color: #551a8b; /* visited link */
+}
+
+hr {
+    margin: 1em 0;
+}
+
+code,
+pre {
+    font-family: "Courier New", Courier, monospace;
+}
