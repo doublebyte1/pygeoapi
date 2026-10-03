@@ -5,6 +5,7 @@ services:
     build: .
     volumes:
       - ./cern-config.yml:/pygeoapi/local.config.yml
+      - /home/joana/git/pygeoapi/themes/:/pygeoapi/themes/
     ports:
       - "8080:80"
     container_name: pygeoapi-ga
