@@ -1,8 +1,10 @@
 # =================================================================
 #
 # Authors: Tom Kralidis <tomkralidis@gmail.com>
+#          Joana Simoes <jo@doublebyte.net>
 #
 # Copyright (c) 2025 Tom Kralidis
+# Copyright (c) 2026 Joana Simoes
 #
 # Permission is hereby granted, free of charge, to any person
 # obtaining a copy of this software and associated documentation
@@ -58,14 +60,14 @@ server:
     admin: false # enable admin api
 
 logging:
-    level: ERROR
+    level: DEBUG
     #logfile: /tmp/pygeoapi.log
 
 metadata:
     identification:
         title:
-            en: pygeoapi default instance
-            fr: instance par défaut de pygeoapi
+            en: pygeoapi geoamish instance
+            fr: instance par geoamish de pygeoapi
         description:
             en: pygeoapi provides an API to geospatial data
             fr: pygeoapi fournit une API aux données géospatiales
@@ -74,10 +76,12 @@ metadata:
                 - geospatial
                 - data
                 - api
+                - geoamish
             fr:
                 - géospatiale
                 - données
                 - api
+                - geoamish
         keywords_type: theme
         terms_of_service: https://creativecommons.org/licenses/by/4.0/
         url: https://example.org
@@ -85,8 +89,8 @@ metadata:
         name: CC-BY 4.0 license
         url: https://creativecommons.org/licenses/by/4.0/
     provider:
-        name: Organization Name
-        url: https://pygeoapi.io
+        name: Geoamish
+        url: https://geoamish.org/
     contact:
         name: Lastname, Firstname
         position: Position Title
