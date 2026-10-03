@@ -47,8 +47,8 @@ server:
         default_items: 20
         max_items: 50
     templates:
-      path: /home/joana/git/tmp/pygeoapi/pygeoapi/themes/cern/templates
-      static: /home/joana/git/tmp/pygeoapi/pygeoapi/themes/cern/static # css/js/img
+      path: /home/joana/git/pygeoapi/themes/cern/templates
+      static: /home/joana/git/pygeoapi/themes/cern/static # css/js/img
     map:
         url: https://tile.openstreetmap.org/{z}/{x}/{y}.png
         attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
