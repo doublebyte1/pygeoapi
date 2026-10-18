@@ -51,9 +51,9 @@ jobs:
           echo "Classifier label: $LABEL"
           case "$LABEL" in
             Low)
-              gh pr edit "$PR_NUMBER" --add-label "human generated" ;;
+              gh pr edit "$PR_NUMBER" --repo "$GITHUB_REPOSITORY --add-label "human generated" ;;
             High|Very\ High)
-              gh pr edit "$PR_NUMBER" --add-label "AI generated" ;;
+              gh pr edit "$PR_NUMBER" --repo "$GITHUB_REPOSITORY --add-label "AI generated" ;;
             *)
               echo "Label '$LABEL' maps to no auto-label; nothing to do." ;;
           esac
