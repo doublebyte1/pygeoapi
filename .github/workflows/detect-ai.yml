@@ -27,7 +27,7 @@ jobs:
         run: |
           set -euo pipefail
           [ -n "$CODEBERG_TOKEN" ] || { echo "::error::CODEBERG_TOKEN secret is required"; exit 1; }
-          clone_url="https://user:${CODEBERG_TOKEN}@codeberg.org/doublebyte/uncover-agent.git"
+          clone_url="https://user:${CODEBERG_TOKEN}@codeberg.org/geoamish/uncover-agent.git"
           git clone --quiet "$clone_url" "$RUNNER_TEMP/uncover-agent"
           shopt -s dotglob
           mv "$RUNNER_TEMP/uncover-agent"/* .
