@@ -1,6 +1,8 @@
-name: Detect AI
 # Runs script to detect the likelihood of a PR have being create
 # by an agent, or with a human with heavy use of AI.
+
+name: Detect AI
+
 on:
   pull_request:
 
