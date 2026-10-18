@@ -1,0 +1,4 @@
+# uncover-agent test diff
+# original: https://github.com/opengeospatial/ogcapi-workshop/pull/85
+# kind=human
+# generated 2026-10-18 19:54:21 UTC
