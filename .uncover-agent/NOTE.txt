@@ -1,0 +1,4 @@
+# uncover-agent test diff
+# original: https://github.com/wmo-im/wmds/pull/697
+# kind=human
+# generated 2026-10-18 19:54:53 UTC
