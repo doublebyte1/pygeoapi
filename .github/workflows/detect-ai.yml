@@ -7,8 +7,8 @@ on:
   pull_request:
     branches:
       - master
-      - detect-ai
-      
+      - uncover-agent
+
 permissions:
   contents: read
   pull-requests: write
