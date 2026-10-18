@@ -1,0 +1,4 @@
+# uncover-agent test diff
+# original: https://github.com/geopython/pygeoapi/pull/2423
+# kind=human
+# generated 2026-10-18 20:11:19 UTC
