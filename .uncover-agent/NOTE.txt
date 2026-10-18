@@ -1,0 +1,4 @@
+# uncover-agent test diff
+# original: https://github.com/wmo-im/pywmocat/pull/16
+# kind=human
+# generated 2026-10-18 19:54:47 UTC
