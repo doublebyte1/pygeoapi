@@ -1,0 +1,37 @@
+# Collects PR metadata, for the "Detect AI" workflow
+
+name: Collect PR metadata
+
+on:
+  pull_request:
+    branches:
+      - master
+      - trust-workflow # remove this later
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  collect-pr-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Collect public PR metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api \
+            repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }} \
+            --jq '{pr_number: .number, html_url: .html_url, repository: .base.repo.full_name, base_sha: .base.sha, head_sha: .head.sha, head_repo: .head.repo.full_name}' \
+            > pr-metadata.json
+
+      # Uploads collected metadata, so it is accessible from the next workflow
+      - name: Upload metadata artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-metadata
+          path: pr-metadata.json

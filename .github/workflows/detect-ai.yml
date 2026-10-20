@@ -1,15 +1,18 @@
 # Runs script to detect the likelihood of a PR have being create
 # by an agent, or with a human with heavy use of AI. 
+#
+# This workflow, enables us to access the secret CODEBERG_TOKEN,
+# without compromising security.
 
 name: Detect AI
 
 on:
-  pull_request:
-    branches:
-      - master
-      - uncover-agent # We can remove this later
+  workflow_run:
+    workflows: ["Collect PR metadata"]
+    types: [completed]
 
 permissions:
+  actions: read
   contents: read
   pull-requests: write
   issues: write
@@ -17,18 +20,43 @@ permissions:
 jobs:
   analyse:
     name: Classify PR (AI vs human)
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CODEBERG_TOKEN: ${{ secrets.CODEBERG_TOKEN }}
+
     steps:
+      # Download the metadata stored in the previous workflow
+      - name: Download PR metadata artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: pr-metadata
+          path: ./artifacts
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Read PR metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          with open('./artifacts/pr-metadata.json') as f:
+              data = json.load(f)
+          print(data)
+          with open(os.environ['GITHUB_ENV'], 'a') as env:
+              env.write(f"PR_NUMBER={data['pr_number']}\n")
+              env.write(f"PR_URL={data['html_url']}\n")
+          PY
+
+      # The Codeberg repo is private, so we have to clone it with a Codeberg token
       - name: Check out repository
-        # The Codeberg repo is private, so we have to clone it with a Codeberg token
+        shell: bash
         run: |
           set -euo pipefail
           [ -n "$CODEBERG_TOKEN" ] || { echo "::error::CODEBERG_TOKEN secret is required"; exit 1; }
-          clone_url="https://user:${CODEBERG_TOKEN}@codeberg.org/geoamish/uncover-agent.git"
-          git clone --quiet "$clone_url" "$RUNNER_TEMP/uncover-agent"
+          git clone --quiet "https://user:${CODEBERG_TOKEN}@codeberg.org/geoamish/uncover-agent.git" "$RUNNER_TEMP/uncover-agent"
           shopt -s dotglob
           mv "$RUNNER_TEMP/uncover-agent"/* .
           rmdir "$RUNNER_TEMP/uncover-agent"
@@ -36,12 +64,11 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.12" # we can change this later
+          python-version: "3.12" # we can upgrade this later
 
       - name: Run uncover_agents.py
         run: |
           set -euo pipefail
-          PR_URL="https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }}"
           python uncover_agents.py "$PR_URL" | tee result.json
 
       # These labels must exist in the repository
@@ -59,4 +86,4 @@ jobs:
               echo "Label '$LABEL' maps to no auto-label; nothing to do." ;;
           esac
         env:
-          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_NUMBER: ${{ env.PR_NUMBER }}
